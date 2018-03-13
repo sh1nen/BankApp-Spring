@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header-mat"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar-mat"/>
+<div class="container">
+    <div class="row">
+        <div class="col s12 ">
+            <ul class="tabs">
+                <li class="tab col s3 "><a class="active" href="#test1">Transfer to recipient</a></li>
+                <li class="tab col s3"><a href="#test2">Transfer to user</a></li>
+            </ul>
+        </div>
+        <div id="test1" class="main-login main-center">
+            <h3 class="title center-align">Transfer to other recipient</h3>
+            <hr/>
+            <div class="row">
+                <div class="z-depth-1" style="display: inline-block; background: white; padding: 32px 48px 0px 48px;  border: 3px solid #9fe4f2;">
+                    <form class="col s12" id="bet-form" method="post" th:action="@{/transfer/toOtherRecipient}">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select class="validate" id="recipientName" name="recipientName" th:value="${recipientName}">
+                                    <option disabled="disabled" selected="selected"> -- select the recipient --</option>
+                                    <option data-th-each="eachRecipient : ${recipientList}" data-th-text="${eachRecipient.name}"></option>
+                                    <br/>
+                                </select>
+                                <label>1. Please choose the recipient:</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <select class="validate" id="accountType" name="accountType" th:value="${accountType}">
+                                    <option disabled="disabled" selected="selected"> -- select your account --</option>
+                                    <option>Primary</option>
+                                    <option>Savings</option>
+                                </select>
+                                <label>2. Please select the account you would like to transfer from:</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" class="validate" id="amount" name="amount" th:value="${amount}"/>
+                                <label class="active" for="amount">3. Specify the amount you want to transfer:</label>
+                            </div>
+                        </div>
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Transfer
+                                    <i class="material-icons right">done</i>
+                                </button>
+                            </div>
+                            <div class="input-field col s6">
+                                <a class="btn btn-large waves-effect waves-light red darken-4" th:href="@{/userFront}">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="test2" class="main-login main-center">
+            <h3 class="title center-align">Transfer to other user</h3>
+            <hr/>
+            <div class="row">
+                <div class="z-depth-1" style="display: inline-block; background: white; padding: 32px 48px 0px 48px;  border: 3px solid #9fe4f2;">
+                    <form class="col s12" id="user-form" method="post" th:action="@{/transfer/toOtherUser}">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select class="validate" id="userName" name="userName" th:value="${userName}">
+                                    <option disabled="disabled" selected="selected"> -- select the user --</option>
+                                    <option data-th-each="eachUser : ${userList}" data-th-text="${eachUser.username}"></option>
+                                    <br/>
+                                </select>
+                                <label>1. Please choose the user:</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <select class="validate" id="userAccountType" name="userAccountType" th:value="${userAccountType}">
+                                    <option disabled="disabled" selected="selected"> -- select your account --</option>
+                                    <option>Primary</option>
+                                    <option>Savings</option>
+                                </select>
+                                <label>2. Please select the account you would like to transfer from:</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" class="validate" id="amountUser" name="amountUser" th:value="${amountUser}"/>
+                                <label class="active" for="amount">3. Specify the amount you want to transfer:</label>
+                            </div>
+                        </div>
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Transfer
+                                    <i class="material-icons right">done</i>
+                                </button>
+                            </div>
+                            <div class="input-field col s6">
+                                <a class="btn btn-large waves-effect waves-light red darken-4" th:href="@{/userFront}">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts-mat"/>
+
+</body>
+</html>

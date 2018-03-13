@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header-mat"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar-mat"/>
+<div class="container">
+    <div class="main-login main-center">
+        <h3 class="title center-align">Recipient Information</h3>
+        <hr/>
+        <div class="row">
+            <div class="z-depth-1" style="display: inline-block; background: white; padding: 32px 48px 0px 48px;  border: 3px solid #9fe4f2;">
+                <form th:action="@{/transfer/recipient/save}" th:object="${recipient}" method="post">
+                    <input type="hidden" th:value="*{id}"/>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" class="validate" th:field="*{name}" placeholder="Enter your Name" required="required"/>
+                            <label class="active" for="name">Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="email" class="validate" th:field="*{email}" placeholder="Enter your Email" required="required"/>
+                            <label class="active" for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" class="validate" th:field="*{phone}" placeholder="Enter your Phone" required="required"/>
+                            <label class="active" for="phone">Phone</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" class="validate" th:field="*{accountNumber}" placeholder="Enter your Account Number" required="required"/>
+                            <label class="active" for="accountNumber">Account Number</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea class="materialize-textarea" th:field="*{description}" placeholder="Description" th:text="*{description}"/>
+                            <label class="active" for="description">Description</label>
+                        </div>
+                    </div>
+
+                    <input type="hidden"
+                           name="${_csrf.parameterName}"
+                           value="${_csrf.token}"/>
+
+                    <div class='row'>
+                        <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Add/Edit Recipient</button>
+                    </div>
+                </form>
+
+                <div class="col-md-6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <h3>List of Recipients</h3>
+        <div class="responsive-table">
+            <table id="example" class="highlight striped bordered">
+                <thead>
+                <tr>
+                    <th>Recipient Name</th>
+                    <th>Recipient Email</th>
+                    <th>Recipient Phone</th>
+                    <th>Recipient Account Number</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-th-each="eachRecipient : ${recipientList}">
+                    <td><a data-th-text="${eachRecipient.name}" th:href="@{/transfer/recipient/edit?recipientName=}+${eachRecipient.name}">...</a></td>
+                    <td data-th-text="${eachRecipient.email}">...</td>
+                    <td data-th-text="${eachRecipient.phone}">...</td>
+                    <td data-th-text="${eachRecipient.accountNumber}">...</td>
+                    <td data-th-text="${eachRecipient.description}">...</td>
+                    <td><a th:href="@{/transfer/recipient/delete?recipientName=}+${eachRecipient.name}">delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts-mat"/>
+
+</body>
+</html>

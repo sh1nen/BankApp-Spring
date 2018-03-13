@@ -1,0 +1,7 @@
+<mat-toolbar class="mat-primary">
+  <h3 [style.color] = "'white'">ADMIN PORTAL</h3>
+  <span class="example-spacer"></span>
+  <span [hidden]="!loggedIn "><a mat-button routerLink="/userAccount">User Account</a></span>
+  <span [hidden]="!loggedIn "><a mat-button routerLink="/appointment">Appointment</a></span>
+  <span [hidden]="!loggedIn " (click)="logout()"><a mat-button>Logout</a></span>
+</mat-toolbar> 

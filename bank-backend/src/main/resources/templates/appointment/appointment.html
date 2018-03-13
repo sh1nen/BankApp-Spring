@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header-mat"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar-mat"/>
+<div class="container">
+    <div class="main-login main-center">
+        <h3 class="title center-align">Schedule an appointment</h3>
+        <hr/>
+        <div class="row">
+            <div class="z-depth-1" style="display: inline-block; background: white; padding: 32px 48px 0px 48px;  border: 3px solid #9fe4f2;">
+                <form class="col s12" th:action="@{/appointment/create}" th:object="${appointment}" method="post" id="appointmentForm">
+                    <input type="hidden" th:value="*{id}"/>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input class="dateString" type="text" readonly="readonly"
+                                   th:value="${dateString}" name="dateString"
+                                   id="dateString" required="required"/>
+                            <label class="active" for="dateString">Pick a date:</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input class="timeString" type="text" readonly="readonly"
+                                   th:value="${timeString}" name="timeString"
+                                   id="timeString" required="required"/>
+                            <label class="active" for="timeString">Pick a time:</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select class="validate" name="location" id="location" th:field="*{location}">
+                                <option th:each="type : ${allCities}"
+                                        th:value="${type}"
+                                        th:text="${type}"></option>
+                            </select>
+                            <label class="active" for="location">Pick a location:</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea class="materialize-textarea" th:field="*{description}" placeholder="Description" th:text="*{description}"/>
+                            <label class="active" for="description">Description</label>
+                        </div>
+                    </div>
+
+                    <input type="hidden"
+                           name="${_csrf.parameterName}"
+                           value="${_csrf.token}"/>
+
+                    <div class='row'>
+                        <button type='submit' id="submitAppointment" name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Schedule appointment</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <br/>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts-mat"/>
+
+<script type="text/javascript" th:src="@{/js/rome.js}"></script>
+<script type="text/javascript" th:src="@{/js/moment.js}"></script>
+<script type="text/javascript" th:src="@{/js/material-datetime-picker.js}"></script>
+<script th:src="@{/js/bootbox.min.js}"></script>
+
+</body>
+</html>

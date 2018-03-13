@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header-mat"/>
+<body>
+<head th:replace="common/header :: navbar-mat"/>
+<div class="container">
+    <div class="preloader-background">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l12">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l6 m6">
+            <div class="card grey lighten-4">
+                <div class="card-content blue-text text-darken-2">
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <h4>Primary Balance: </h4>
+                        </div>
+                        <div class="col s12 m6 right-align">
+                            <h4><span th:text="AP +' ' + ${primaryAccount.accountBalance}">...</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a th:href="@{/account/primaryAccount}">
+                        <span class="blue-text text-darken-2 left-align">View Details</span>
+                        <span class="blue-text text-darken-2 right-align"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card grey lighten-4">
+                <div class="card-content blue-text text-darken-2">
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <h4>Savings Balance: </h4>
+                        </div>
+                        <div class="col s12 m6 right-align">
+                            <h4><span th:text="AP +' ' + ${savingsAccount.accountBalance}">...</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a th:href="@{/account/savingsAccount}">
+                        <span class="blue-text text-darken-2 left-align">View Details</span>
+                        <span class="blue-text text-darken-2 right-align"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col l3 m6">
+            <div class="card grey lighten-4">
+                <div class="card-content blue-text text-darken-2">
+                    <div class="row">
+                        <div class="col s3">
+                            <i class="fa fa-credit-card fa-5x"></i>
+                        </div>
+                        <div class="col s9 right-align">
+                            <div>Deposit</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a th:href="@{/account/deposit}">
+                        <span class="blue-text text-darken-2 left-align">Go to Deposit</span>
+                        <span class="blue-text text-darken-2 right-align"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col l3 m6">
+            <div class="card grey lighten-4">
+                <div class="card-content blue-text text-darken-2">
+                    <div class="row">
+                        <div class="col s3">
+                            <i class="fa fa-money fa-5x"></i>
+                        </div>
+                        <div class="col s9 right-align">
+                            <div>Withdraw</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a th:href="@{/account/withdraw}">
+                        <span class="blue-text text-darken-2 left-align">Go to Withdrawal</span>
+                        <span class="blue-text text-darken-2 right-align"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts-mat"/>
+
+</body>
+</html>

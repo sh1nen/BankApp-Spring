@@ -1,0 +1,46 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+		</ng-container>
+		
+    <ng-container matColumnDef="firstname">
+      <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.firstName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastname">
+      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.lastName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.phone}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="primaryAccount">
+      <mat-header-cell *matHeaderCellDef> Primary Account </mat-header-cell>
+      <mat-cell *matCellDef="let user"><a (click)="onSelectPrimary(user.username)" style="cursor: pointer;">{{user.primaryAccount.accountBalance}}</a></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="savingsAccount">
+      <mat-header-cell *matHeaderCellDef> Savings Account </mat-header-cell>
+      <mat-cell *matCellDef="let user"> <a (click)="onSelectSavings(user.username)" style="cursor: pointer;">{{user.savingsAccount.accountBalance}}</a></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="enabled">
+      <mat-header-cell *matHeaderCellDef> Enabled </mat-header-cell>
+      <mat-cell *matCellDef="let user"><a (click)="enableUser(user.username)" style="cursor: pointer;">{{user.enabled}}</a></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

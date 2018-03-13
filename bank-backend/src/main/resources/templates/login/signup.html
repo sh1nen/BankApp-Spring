@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header-mat"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<div class="container">
+    <div class="main-login main-center">
+        <h2 class="title center-align">Registration</h2>
+        <hr/>
+        <div class="row">
+            <div class="z-depth-1" style="display: inline-block; background: white; padding: 32px 48px 0px 48px;  border: 3px solid #9fe4f2;">
+                <form class="col s12" id="reg-form" method="post" th:action="@{/signup}" th:object="${user}">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" class="validate" th:field="*{firstName}" placeholder="Enter your first name"
+                                   required="required"/>
+                            <label class="active" for="firstName">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" class="validate" th:field="*{lastName}" placeholder="Enter your last name" required="required"/>
+                            <label class="active" for="lastName">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" class="validate" th:field="*{phone}" placeholder="Enter your Email" required="required"/>
+                            <label class="active" for="phone">Phone</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="email" class="validate" th:field="*{email}" placeholder="xxx-xxx-xxxx" required="required"/>
+                            <label class="active" for="email">Email</label>
+                            <span class="red darken-3 white-text pull-right" th:if="${emailExists}">Email already exists</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" class="validate" th:field="*{username}" placeholder=" " required="required"/>
+                            <label class="active" for="username">Username</label>
+                            <span class="red darken-3 pull-right" th:if="${usernameExists}">Username already exists</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="password" class="validate" th:field="*{password}" placeholder=" " required="required"/>
+                            <label class="active" for="password">Password</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <p>
+                                <input id="showPassword" type="checkbox"/>
+                                <label class="active" for="showPassword">Show Password</label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Register
+                                <i class="material-icons right">done</i>
+                            </button>
+                        </div>
+                        <div class="input-field col s6">
+                            <a class="btn btn-large waves-effect waves-light red darken-4" th:href="@{/}">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts-mat"/>
+
+</body>
+</html>

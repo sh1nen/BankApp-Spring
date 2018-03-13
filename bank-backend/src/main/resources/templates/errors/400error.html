@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header-mat"/>
+<body>
+<div class="col s12 m7">
+    <h2 class="header">400 Bad Request</h2>
+    <div class="card horizontal">
+        <div class="card-image">
+            <img th:src="@{/images/error.png}"/>
+        </div>
+        <div class="card-stacked">
+            <div class="card-content">
+                <p th:text="${exception.getMessage()}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="common/header :: body-bottom-scripts-mat"/>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Appointment Id </mat-header-cell>
+      <mat-cell *matCellDef="let appointment"> {{appointment.id}} </mat-cell>
+		</ng-container>
+		
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+      <mat-cell *matCellDef="let appointment"> {{appointment.user.username}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let appointment">{{appointment.date | date: 'MM/dd/yyyy - hh:mm'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let appointment"> {{user.description}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="confirmed">
+      <mat-header-cell *matHeaderCellDef> Confirmed </mat-header-cell>
+      <mat-cell *matCellDef="let appointment"><a (click)="confirmAppointment(appointment.id)" style="cursor: pointer;">{{appointment.confirmed}}</a></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

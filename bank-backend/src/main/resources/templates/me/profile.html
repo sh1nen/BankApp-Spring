@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header-mat"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar-mat"/>
+<div class="container">
+    <h3 class="title center-align">My profile</h3>
+    <hr/>
+    <div class="row">
+        <div class="col m6">
+            <div class="z-depth-1" style="display: inline-block; background: white; padding: 32px 48px 0px 48px;  border: 3px solid #9fe4f2;">
+                <form method="post" th:action="@{/user/profile}" th:object="${user}">
+                    <input type="hidden" th:field="*{userId}"/>
+
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <i class="material-icons prefix">account_circle</i>
+                            <input class='validate' type="text" th:field="*{firstName}" placeholder="Enter your first name"
+                                   required="required"/>
+                            <label class="active" for='firstName'>First Name:</label>
+                        </div>
+                        <div class='input-field col s12'>
+                            <i class="material-icons prefix">account_circle</i>
+                            <input class='validate' type="text" th:field="*{lastName}" placeholder="Enter your last name"
+                                   required="required"/>
+                            <label class="active" for='lastName'>Last Name:</label>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <i class="material-icons prefix">phone</i>
+                            <input class='validate' type="tel" th:field="*{phone}" placeholder="Enter your phone"
+                                   required="required"/>
+                            <label class="active" for='phone'>Phone:</label>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <i class="material-icons prefix">email</i>
+                            <input class='validate' type="email" th:field="*{email}" placeholder="Enter your email"
+                                   required="required"/>
+                            <label class="active" for='email'>Email:</label>
+                            <span class="red darken-3 pull-right" th:if="${emailExists}">Email already exists</span>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <i class="material-icons prefix">verified_user</i>
+                            <input class='validate' type="text" th:field="*{username}" placeholder="Enter your username"
+                                   required="required"/>
+                            <label class="active" for='username'>Username</label>
+                            <span class="red darken-3 pull-right" th:if="${usernameExists}">Username already exists</span>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Edit profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col m6">
+            <div class="card grey lighten-4">
+                <div class="card-content blue-text text-darken-2">
+                    <h4 class="title">Your Account Information</h4>
+                    <hr/>
+                </div>
+                <table class="responstable">
+                    <tr>
+                        <th>Primary Account Number</th>
+                        <th>Savings Account Number</th>
+                    </tr>
+                    <tr>
+                        <td data-th-text="${user.primaryAccount.accountNumber}">...</td>
+                        <td data-th-text="${user.savingsAccount.accountNumber}">...</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts-mat"/>
+
+</body>
+</html>
